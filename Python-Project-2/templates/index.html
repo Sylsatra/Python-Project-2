@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Web App</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Interactive Web App</h1>
+
+    <div id="placed-graph"></div>
+    <div id="not-placed-graph"></div>
+
+    <script>
+        // Parse the JSON strings
+        var placedGraphJson = JSON.parse('{{ placed_graph|safe }}');
+        var notPlacedGraphJson = JSON.parse('{{ not_placed_graph|safe }}');
+
+        // Create the interactive bar charts
+        Plotly.newPlot('placed-graph', placedGraphJson.data, placedGraphJson.layout);
+        Plotly.newPlot('not-placed-graph', notPlacedGraphJson.data, notPlacedGraphJson.layout);
+    </script>
+</body>
+</html>
+
+
