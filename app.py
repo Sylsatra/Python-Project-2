@@ -110,6 +110,7 @@ fig_segment4.update_xaxes(tickangle=-45)
 
 # Step 4: Create app layout
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
+server = app.server
 app.layout = html.Div(
     style={'backgroundColor': '#C7EFCF', 'color': '#333333'},  # Set background color and text color
     children=[
