@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
+import statsmodels.api as sm
 
 # Step 1: Define sections
 segment_style = {
