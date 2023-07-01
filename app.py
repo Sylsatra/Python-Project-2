@@ -8,7 +8,7 @@ from dash.dependencies import Input, Output, State
 import os
 import flask
 app = dash.Dash(__name__)
-
+server = app.server
 # Create the scatter graph
 data = pd.read_csv('data.csv')
 mixed_fig = px.scatter(
