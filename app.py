@@ -86,7 +86,6 @@ app.layout = html.Div(
                                     value=data['salary'].min(),
                                     marks={i*1000000: f'${i}M' for i in range(0, int(data['salary'].max() / 1000000), 100)},
                                 ),
-                                html.Div(id='salary-range-output')
                             ]
                         )
                     ]
