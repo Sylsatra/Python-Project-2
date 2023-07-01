@@ -30,140 +30,65 @@ scatter_fig = px.scatter(
 )
 scatter_fig.update_layout(showlegend=False)  # Remove the legend from the scatter plot
 
-app.layout = dbc.Container(
-    style={'background-color': '#E3F4F4'},
-    fluid=True,
+app.layout = html.Div(
+    style={'background-color': '#E3F4F4', 'display': 'flex', 'height': '100vh', 'margin': '0 0 0 -15px'},
     children=[
-        dbc.Row(
-            style={'marginTop': '20px'},
+        html.Div(
+            style={'width': '320px', 'height': '590px', 'border': '1px solid #ddd', 'border-radius': '10px', 'margin': '10px', 'background-color': 'white', 'margin-right': '5px', 'padding': '20px', 'text-align': 'center', 'box-shadow': '2px 2px 5px 0px rgba(0,0,0,0.3)'},
             children=[
-                dbc.Col(
-                    width=3,
+                # Side tab title
+                html.Div(
+                    style={'padding': '10px', 'border-bottom': '2px solid white', 'background-color': 'white'},
                     children=[
-                        html.Div(
-                            style={'padding': '10px', 'border-bottom': '2px solid white', 'background-color': 'white'},
-                            children=[
-                                html.H3('Our Products', style={'color': '#2c3e50', 'margin': '0', 'font-family': 'Arial'}),
-                            ]
-                        ),
-                        html.A('Home Page', href='/', style={'display': 'block', 'margin-bottom': '20px', 'padding': '15px', 'color': '#2980b9', 'text-decoration': 'none', 'font-family': 'Arial', 'font-size': '18px', 'line-height': '24px', 'border': '1px solid #ddd', 'outline': 'none', 'box-shadow': '2px 2px 5px 0px rgba(0,0,0,0.3)'}),
-                        html.A('PDF Report', id='pdf-link', href='/pdf', style={'display': 'block', 'margin-bottom': '20px', 'padding': '15px', 'color': '#2980b9', 'text-decoration': 'none', 'font-family': 'Arial', 'font-size': '18px', 'line-height': '24px', 'border': '1px solid #ddd', 'outline': 'none', 'box-shadow': '2px 2px 5px 0px rgba(0,0,0,0.3)'})
+                        html.H3('Our Products', style={'color': '#2c3e50', 'margin': '0', 'font-family': 'Arial'}),
                     ]
                 ),
-                dbc.Col(
-                    width=9,
+                # Button 1
+                html.A('Home Page', href='/', style={'background-color': 'white', 'display': 'block', 'margin-bottom': '20px', 'padding': '15px', 'color': '#2980b9', 'text-decoration': 'none', 'font-family': 'Arial', 'font-size': '18px', 'line-height': '24px', 'border': '1px solid #ddd', 'outline': 'none', 'box-shadow': '2px 2px 5px 0px rgba(0,0,0,0.3)'}),
+                # Button 2
+                html.A('PDF Report', id='pdf-link', href='/pdf', style={'background-color': 'white', 'display': 'block', 'margin-bottom': '20px', 'padding': '15px', 'color': '#2980b9', 'text-decoration': 'none', 'font-family': 'Arial', 'font-size': '18px', 'line-height': '24px', 'border': '1px solid #ddd', 'outline': 'none', 'box-shadow': '2px 2px 5px 0px rgba(0,0,0,0.3)'})
+            ]
+        ),
+        html.Div(
+            style={'flex': '1', 'padding': '0px 0px', 'display': 'flex', 'flex-direction': 'column', 'align-items': 'flex-end', 'justify-content': 'top', 'margin': '10px'},
+            children=[
+                html.Div(
+                    style={'display': 'flex', 'justify-content': 'flex-end', 'margin':'10px','bottom': '10px'},
                     children=[
-                        dbc.Row(
-                            style={'marginTop': '20px'},
-                            children=[
-                                dbc.Col(
-                                    width=4,
-                                    children=[
-                                        html.Div(
-                                            style={'border': '1px solid white', 'border-radius': '10px', 'background-color': 'white', 'margin-bottom': '20px', 'padding': '10px'},
-                                            children=[
-                                                                                               html.H4('Genders selection', style={'color': '#2980b9', 'margin': '10px'}),
-                                                dcc.Dropdown(
-                                                    id='gender-dropdown',
-                                                    options=[
-                                                        {'label': 'Male', 'value': 'M'},
-                                                        {'label': 'Female', 'value': 'F'}
-                                                    ],
-                                                    value='M',
-                                                    clearable=False
-                                                )
-                                            ]
-                                        )
-                                    ]
-                                ),
-                                dbc.Col(
-                                    width=4,
-                                    children=[
-                                        html.Div(
-                                            style={'border': '1px solid white', 'border-radius': '10px', 'background-color': 'white', 'margin-bottom': '20px', 'padding': '10px'},
-                                            children=[
-                                                html.H4('Degree types', style={'color': '#2980b9', 'margin': '10px'}),
-                                                dcc.Dropdown(
-                                                    id='degree-dropdown',
-                                                    options=[
-                                                        {'label': 'Science', 'value': 'Sci&Tech'},
-                                                        {'label': 'Commerce', 'value': 'Comm&Mgmt'},
-                                                        {'label': 'Arts', 'value': 'Arts'}
-                                                    ],
-                                                    value='Sci&Tech',
-                                                    clearable=False
-                                                )
-                                            ]
-                                        )
-                                    ]
-                                ),
-                                dbc.Col(
-                                    width=4,
-                                    children=[
-                                        html.Div(
-                                            style={'border': '1px solid white', 'border-radius': '10px', 'background-color': 'white', 'margin-bottom': '20px', 'padding': '10px'},
-                                            children=[
-                                                html.H4('Select Scatter Plot', style={'color': '#2980b9', 'margin': '10px'}),
-                                                dcc.Dropdown(
-                                                    id='plot-dropdown',
-                                                    options=[
-                                                        {'label': 'Mixed Plot', 'value': 'mixed'},
-                                                        {'label': 'Scatter Plot', 'value': 'scatter'}
-                                                    ],
-                                                    value='mixed',
-                                                    clearable=False
-                                                )
-                                            ]
-                                        )
-                                    ]
-                                )
-                            ]
+                        # Dropdown menu
+                        dcc.Dropdown(
+                            id='graph-dropdown',
+                            options=[
+                                {'label': 'Mixed Graph', 'value': 'mixed'},
+                                {'label': 'Scatter Graph', 'value': 'scatter'},
+                            ],
+                            value='mixed',
+                            style={'width': '200px', 'margin-right': '10px'}
                         ),
-                        dbc.Row(
-                            children=[
-                                dbc.Col(
-                                    width=12,
-                                    children=[
-                                        dcc.Graph(id='graph')
-                                    ]
-                                )
-                            ]
-                        )
+                        # Button
+                        html.Button('Update Graph', id='graph-button', n_clicks=0, style={'background-color': '#2980b9', 'color': 'white', 'border': 'none', 'border-radius': '5px', 'padding': '10px 20px', 'font-size': '14px', 'cursor': 'pointer'}),
                     ]
-                )
+                ),
+                # Graph
+                dcc.Graph(id='graph'),
             ]
         )
     ]
 )
 
+
 @app.callback(
     Output('graph', 'figure'),
-    Input('gender-dropdown', 'value'),
-    Input('degree-dropdown', 'value'),
-    Input('plot-dropdown', 'value')
+    Input('graph-button', 'n_clicks'),
+    State('graph-dropdown', 'value')
 )
-def update_graph(gender, degree, plot_type):
-    if plot_type == 'mixed':
-        filtered_data = data[(data['gender'] == gender) & (data['degree_t'] == degree)]
-        fig = px.scatter(
-            filtered_data,
-            x='ssc_p',
-            y='degree_p',
-            color='degree_t',
-            marginal_y='violin',
-            marginal_x='box',
-        )
-        fig.update_layout(showlegend=False)
-    elif plot_type == 'scatter':
-        filtered_data = data[(data['gender'] == gender)]
-        fig = px.scatter(
-            filtered_data,
-            x='degree_p',
-            y='salary',
-            color='gender',
-        )
-        fig.update_layout(showlegend=False)
-    return fig
+def update_graph(n_clicks, graph_type):
+    if graph_type == 'mixed':
+        return mixed_fig
+    elif graph_type == 'scatter':
+        return scatter_fig
+    else:
+        return {}
 
 
 if __name__ == '__main__':
