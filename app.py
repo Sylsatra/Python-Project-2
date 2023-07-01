@@ -3,7 +3,6 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc
 import plotly.express as px
 import pandas as pd
-from pandas_profiling import ProfileReport
 from dash.dependencies import Input, Output, State
 import os
 import flask
